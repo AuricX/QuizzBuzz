@@ -145,3 +145,51 @@ body {
 .deadline-item:last-child {
   border-bottom: none;
 }
+
+/* Add these rules after your existing CSS */
+
+/* Dark Mode Styles */
+[data-bs-theme="dark"] body {
+  background-color: #212529;
+  color: #f8f9fa;
+}
+
+/* Light/Dark sidebar variations */
+.sidebar-light {
+  background: linear-gradient(180deg, #0dcaf0 0%, #0aa2c0 100%);
+  color: white;
+}
+
+.sidebar-dark {
+  background: linear-gradient(180deg, #0d6efd 0%, #0b5ed7 100%);
+  color: white;
+}
+
+/* Dark mode main content */
+[data-bs-theme="dark"] .main-content {
+  background-color: #212529;
+  color: #f8f9fa;
+}
+
+/* Light mode main content */
+[data-bs-theme="light"] .main-content {
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+/* Dark mode card styles */
+[data-bs-theme="dark"] .card:not(.course-card) {
+  background-color: #2c3034;
+  border-color: #373b3e;
+}
+
+/* Course card colors for dark mode */
+[data-bs-theme="dark"] .course-card {
+  background-color: #2c3034;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Transition for smooth theme switching */
+body, .navbar, .sidebar, .main-content, .card {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
