@@ -4,19 +4,41 @@ $currentPage = 'home';
 
 // Start output buffering to capture content for the layout
 ob_start();
+
+// include 'conx.php';
 ?>
 
-<div class="row">
-    <div class="col-md-8">
-        <h2 class="mb-4">Recent Quizzes</h2>
-        <div class="row">
-            <?php
+<div class="container">
+    <h1 class="mb-4">Recent Quizzes</h1>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4">
+        <?php
             // Example quizzes data (in real app, this would come from a database)
             $quizzes = [
                 [
                     'title' => 'Introduction to PHP',
+                    'footer' => 'Only 1 day(s) remaining to complete the quiz! Hurry up!! ',
                     'content' => 'Test your knowledge of PHP basics with this comprehensive quiz.',
-                    'image' => 'assets/img/js-quiz.png',
+                    'image' => '/assets/img/js-quiz.png',
+                    'actions' => [
+                        ['url' => '/quiz/1', 'text' => 'Start Quiz', 'icon' => 'play-circle', 'class' => 'btn-primary'],
+                        ['url' => '#details-1', 'text' => 'Details', 'icon' => 'info-circle', 'class' => 'btn-outline-secondary']
+                    ]
+                ],
+                [
+                    'title' => 'Introduction to PHP',
+                    'footer' => 'Only 1 day(s) remaining to complete the quiz! Hurry up!! ',
+                    'content' => 'Test your knowledge of PHP basics with this comprehensive quiz.',
+                    'image' => '/assets/img/js-quiz.png',
+                    'actions' => [
+                        ['url' => '/quiz/1', 'text' => 'Start Quiz', 'icon' => 'play-circle', 'class' => 'btn-primary'],
+                        ['url' => '#details-1', 'text' => 'Details', 'icon' => 'info-circle', 'class' => 'btn-outline-secondary']
+                    ]
+                ],
+                [
+                    'title' => 'Introduction to PHP',
+                    'footer' => 'Only 1 day(s) remaining to complete the quiz! Hurry up!! ',
+                    'content' => 'Test your knowledge of PHP basics with this comprehensive quiz.',
+                    'image' => '/assets/img/js-quiz.png',
                     'actions' => [
                         ['url' => '/quiz/1', 'text' => 'Start Quiz', 'icon' => 'play-circle', 'class' => 'btn-primary'],
                         ['url' => '#details-1', 'text' => 'Details', 'icon' => 'info-circle', 'class' => 'btn-outline-secondary']
@@ -24,8 +46,9 @@ ob_start();
                 ],
                 [
                     'title' => 'JavaScript Fundamentals',
+                    'footer' => 'This is a footer',
                     'content' => 'Challenge yourself with core JavaScript concepts and problems.',
-                    'image' => 'assets/img/js-quiz.png',
+                    'image' => '/assets/img/js-quiz.png',
                     'actions' => [
                         ['url' => '/quiz/2', 'text' => 'Start Quiz', 'icon' => 'play-circle', 'class' => 'btn-primary'],
                         ['url' => '#details-2', 'text' => 'Details', 'icon' => 'info-circle', 'class' => 'btn-outline-secondary']
@@ -41,33 +64,12 @@ ob_start();
                 renderCard(
                     $quiz['title'],
                     $quiz['content'],
-                    null,
+                    $quiz['footer'],
                     $quiz['image'] ?? null,
                     $quiz['actions']
                 );
             }
-            ?>
-        </div>
-    </div>
-    
-    <div class="col-md-4">
-        <div class="card mb-4">
-            <div class="card-body">
-                <h5 class="card-title">Your Progress</h5>
-                <div class="d-flex justify-content-between mb-3">
-                    <span>Completed Quizzes:</span>
-                    <strong>12</strong>
-                </div>
-                <div class="d-flex justify-content-between mb-3">
-                    <span>Average Score:</span>
-                    <strong>85%</strong>
-                </div>
-                <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 85%;" 
-                         aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%</div>
-                </div>
-            </div>
-        </div>
+        ?>
     </div>
 </div>
 
