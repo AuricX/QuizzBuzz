@@ -25,7 +25,7 @@
             <?php include_once(__DIR__ . '/../components/navbar.php'); ?>
             
             <!-- Page Content -->
-            <div class="container-fluid px-4 py-3">
+            <div class="container-fluid px-4 py-3" style="background-color:rgb(13, 14, 30);">
                 <?php echo $content ?? ''; ?>
             </div>
         </div>

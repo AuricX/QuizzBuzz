@@ -4,34 +4,32 @@
             <h5 class="text-light">Quick Actions</h5>
             <div class="list-group">
                 <a href="/new-quiz" class="list-group-item list-group-item-action">
-                    <i class="bi bi-plus-circle"></i> Enroll in a Course
+                    <i class="bi bi-plus-circle"></i> Create New Quiz
                 </a>
                 <a href="/my-quizzes" class="list-group-item list-group-item-action">
-                    <i class="bi bi-collection"></i> Upcoming Quizzes
+                    <i class="bi bi-collection"></i> My Quizzes
                 </a>
             </div>
         </div>
-
+        
         <div class="mb-4">
-            <h5 class="text-light">Courses</h5>
+            <h5 class="text-light">Categories</h5>
             <div class="list-group">
                 <?php
-                $courses = [
-                    'CSCI390',
-                    'CSCI380',
-                    'CSCI378',
-                    'CSCI351',
-                    'CSCI392',
-                    'ENGL251'
+                $categories = [
+                    'Mathematics',
+                    'Science',
+                    'History',
+                    'Literature',
+                    'Computer Science'
                 ];
-                foreach ($courses as $course): ?>
-                    <a href="/course/<?php echo strtolower(str_replace(' ', '-', $course)); ?>"
-                        class="list-group-item list-group-item-action">
-                        <i class="bi bi-mortarboard"></i>
-                        <?php echo $course; ?>
+                foreach ($categories as $category): ?>
+                    <a href="/category/<?php echo strtolower(str_replace(' ', '-', $category)); ?>" 
+                       class="list-group-item list-group-item-action">
+                        <?php echo $category; ?>
                     </a>
                 <?php endforeach; ?>
             </div>
         </div>
     </div>
-</div>
+</div> 

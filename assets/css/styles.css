@@ -32,9 +32,8 @@
 }
 
 .card-img-top {
-    height: 150px;
+    height: 200px;
     object-fit: contain;
-    background-color: #fff;
 }
 
 /* Progress bar customization */
@@ -86,10 +85,6 @@
 .navbar-brand {
     font-size: 1.5rem;
     font-weight: 600;
-}
-
-.flex-grow-1 {
-    background-color:rgb(13, 14, 30);
 }
 
 /* Custom scrollbar */
