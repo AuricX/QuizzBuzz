@@ -1,7 +1,6 @@
 <?php
 $pageTitle = 'Student Dashboard - QuizzBuzz';
 $currentPage = 'home';
-
 // Start output buffering to capture content for the layout
 ob_start();
 ?>
@@ -16,7 +15,7 @@ ob_start();
                 [
                     'title' => 'Introduction to PHP',
                     'content' => 'Test your knowledge of PHP basics with this comprehensive quiz.',
-                    'image' => 'assets/img/js-quiz.png',
+                    'image' => '/assets/img/js-quiz.png',
                     'actions' => [
                         ['url' => '/quiz/1', 'text' => 'Start Quiz', 'icon' => 'play-circle', 'class' => 'btn-primary'],
                         ['url' => '#details-1', 'text' => 'Details', 'icon' => 'info-circle', 'class' => 'btn-outline-secondary']
@@ -25,7 +24,7 @@ ob_start();
                 [
                     'title' => 'JavaScript Fundamentals',
                     'content' => 'Challenge yourself with core JavaScript concepts and problems.',
-                    'image' => 'assets/img/js-quiz.png',
+                    'image' => '/assets/img/js-quiz.png',
                     'actions' => [
                         ['url' => '/quiz/2', 'text' => 'Start Quiz', 'icon' => 'play-circle', 'class' => 'btn-primary'],
                         ['url' => '#details-2', 'text' => 'Details', 'icon' => 'info-circle', 'class' => 'btn-outline-secondary']

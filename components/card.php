@@ -10,7 +10,7 @@ function renderCard($title, $content, $footer = null, $imageUrl = null, $actions
 ?>
     <div class="card mb-4">
         <?php if ($imageUrl): ?>
-            <img src="<?php echo htmlspecialchars($imageUrl); ?>" class="card-img-top" style= "object-fit: contain;" alt="<?php echo htmlspecialchars($title); ?>">
+            <img src="<?php echo htmlspecialchars($imageUrl); ?>" class="card-img-top my-3 rounded-3" alt="<?php echo htmlspecialchars($title); ?>">
         <?php endif; ?>
         
         <div class="card-body">
