@@ -1,6 +1,8 @@
 <?php
 $pageTitle = 'Student Dashboard - QuizzBuzz';
 $currentPage = 'home';
+
+require_once __DIR__ . '/conx.php';
 // Start output buffering to capture content for the layout
 ob_start();
 ?>
@@ -10,27 +12,27 @@ ob_start();
         <h2 class="mb-4">Recent Quizzes</h2>
         <div class="row">
             <?php
-            // Example quizzes data (in real app, this would come from a database)
-            $quizzes = [
-                [
-                    'title' => 'Introduction to PHP',
-                    'content' => 'Test your knowledge of PHP basics with this comprehensive quiz.',
-                    'image' => '/assets/img/js-quiz.png',
-                    'actions' => [
-                        ['url' => '/quiz/1', 'text' => 'Start Quiz', 'icon' => 'play-circle', 'class' => 'btn-primary'],
-                        ['url' => '#details-1', 'text' => 'Details', 'icon' => 'info-circle', 'class' => 'btn-outline-secondary']
-                    ]
-                ],
-                [
-                    'title' => 'JavaScript Fundamentals',
-                    'content' => 'Challenge yourself with core JavaScript concepts and problems.',
-                    'image' => '/assets/img/js-quiz.png',
-                    'actions' => [
-                        ['url' => '/quiz/2', 'text' => 'Start Quiz', 'icon' => 'play-circle', 'class' => 'btn-primary'],
-                        ['url' => '#details-2', 'text' => 'Details', 'icon' => 'info-circle', 'class' => 'btn-outline-secondary']
-                    ]
-                ]
-            ];
+            // Fetch quizzes from the database
+            try {
+                $stmt = $database->query("SELECT id, title, content, image FROM quizzes ORDER BY created_at DESC");
+                $quizzes = [];
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $quizzes[] = [
+                        'title' => $row['title'],
+                        'content' => $row['content'],
+                        'image' => $row['image'],
+                        'actions' => [
+                            ['url' => '/quiz/' . $row['id'], 'text' => 'Start Quiz', 'icon' => 'play-circle', 'class' => 'btn-primary'],
+                            ['url' => '#details-' . $row['id'], 'text' => 'Details', 'icon' => 'info-circle', 'class' => 'btn-outline-secondary']
+                        ]
+                    ];
+                }
+            } catch(PDOException $e) {
+                // Log error and show user-friendly message
+                error_log("Database Error: " . $e->getMessage());
+                $quizzes = [];
+                echo '<div class="alert alert-danger">Unable to load quizzes. Please try again later.</div>';
+            }
 
             // Include the card component
             require_once __DIR__ . '/components/card.php';

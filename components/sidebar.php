@@ -1,5 +1,5 @@
-<div class="sidebar bg-dark border-end" style="width: 280px; min-height: 100vh;">
-    <div class="d-flex flex-column p-3">
+<div class="sidebar bg-dark border-end flex-shrink-0" style="width: 280px; height: 100vh;">
+    <div class="d-flex flex-column p-3 h-100">
         <div class="mb-4">
             <h5 class="text-light">Quick Actions</h5>
             <div class="list-group">
