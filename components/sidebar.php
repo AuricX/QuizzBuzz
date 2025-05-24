@@ -13,22 +13,22 @@
         </div>
         
         <div class="mb-4">
-            <h5 class="text-light">Categories</h5>
+            <h5 class="text-light">Courses</h5>
             <div class="list-group">
                 <?php
-                $categories = [
-                    'Mathematics',
-                    'Science',
-                    'History',
-                    'Literature',
-                    'Computer Science'
-                ];
-                foreach ($categories as $category): ?>
-                    <a href="/category/<?php echo strtolower(str_replace(' ', '-', $category)); ?>" 
-                       class="list-group-item list-group-item-action">
-                        <?php echo $category; ?>
-                    </a>
-                <?php endforeach; ?>
+                try {
+                    $stmt = $database->query("SELECT id, title FROM courses ORDER BY title");
+                    while ($course = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
+                        <a href="/course/<?php echo $course['id']; ?>" 
+                           class="list-group-item list-group-item-action">
+                            <?php echo htmlspecialchars($course['title']); ?>
+                        </a>
+                    <?php endwhile;
+                } catch(PDOException $e) {
+                    error_log("Database Error: " . $e->getMessage());
+                    echo '<div class="alert alert-danger">Unable to load courses.</div>';
+                }
+                ?>
             </div>
         </div>
     </div>

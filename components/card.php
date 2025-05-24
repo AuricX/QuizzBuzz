@@ -2,7 +2,7 @@
 /**
  * @param string $title Card title
  * @param string $content Card content
- * @param array $footer Optional footer content
+ * @param string|null $footer Optional footer HTML
  * @param string $imageUrl Optional card image
  * @param array $actions Optional action buttons
  */
@@ -32,7 +32,7 @@ function renderCard($title, $content, $footer = null, $imageUrl = null, $actions
             <?php endif; ?>
         </div>
         
-        <?php if ($footer): ?>
+        <?php if ($footer && is_string($footer)): ?>
             <div class="card-footer">
                 <?php echo $footer; ?>
             </div>
