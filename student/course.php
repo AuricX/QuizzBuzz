@@ -101,7 +101,7 @@ try {
                 }
                 
                 $actions = [
-                    ['url' => 'quiz.php?id=' . $quiz['quiz_id'], 'text' => 'Take Quiz', 'icon' => 'play-circle', 'class' => 'btn-primary']
+                    ['url' => '/student/quiz?id=' . $quiz['quiz_id'], 'text' => 'Take Quiz', 'icon' => 'play-circle', 'class' => 'btn-primary']
                 ];
                 
                 renderCard(

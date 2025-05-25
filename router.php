@@ -16,6 +16,7 @@ $routes = [
     '' => ['file' => 'index.php', 'role' => 'any'],
     'student/courses' => ['file' => 'student/courses.php', 'role' => 'student'],
     'student/course' => ['file' => 'student/course.php', 'role' => 'student'],
+    'student/quiz' => ['file' => 'student/quiz.php', 'role' => 'student'],
     'student/dashboard' => ['file' => 'student/dashboard.php', 'role' => 'student'],
     'instructor/courses' => ['file' => 'instructor/courses.php', 'role' => 'instructor'],
     'instructor/dashboard' => ['file' => 'instructor/dashboard.php', 'role' => 'instructor'],
