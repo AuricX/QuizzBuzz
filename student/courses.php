@@ -1,6 +1,10 @@
 <?php
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'student') {
+    header('Location: /login.php');
+    exit;
+}
 
-$pageTitle = 'Courses - QuizzBuzz';
+$pageTitle = 'My Courses - QuizzBuzz';
 $currentPage = 'courses';
 
 require_once __DIR__ . '/../db/conx.php';
@@ -11,22 +15,26 @@ ob_start();
 
 <div class="row">
     <div class="col-12">
-        <h2 class="mb-4">Available Courses</h2>
+        <h2 class="mb-4">My Enrolled Courses</h2>
         <div class="row">
             <?php
             try {
-                $stmt = $database->query("
+                $stmt = $database->prepare("
                     SELECT c.course_id, c.title, c.description, c.level, t.name AS instructor_name, COUNT(q.quiz_id) AS quiz_count
                     FROM course c
                     JOIN teacher t ON c.teacher_id = t.teacher_id
                     LEFT JOIN quiz q ON c.course_id = q.course_id
+                    JOIN enrollment e ON c.course_id = e.course_id
+                    WHERE e.student_id = :student_id
                     GROUP BY c.course_id
                     ORDER BY c.course_id DESC
                 ");
+                
+                $stmt->execute(['student_id' => $_SESSION['user_id']]);
 
                 while ($course = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     $actions = [
-                        ['url' => 'course.php?id=' . $course['course_id'], 'text' => 'View Course', 'icon' => 'book', 'class' => 'btn-primary']
+                        ['url' => '/student/course?id=' . $course['course_id'], 'text' => 'View Course', 'icon' => 'book', 'class' => 'btn-primary']
                     ];
                     $footer = '<div class="text-muted">'
                         . '<small>'
