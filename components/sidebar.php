@@ -14,7 +14,14 @@
             <div class="list-group">
                 <?php
                 try {
-                    $stmt = $database->query("SELECT course_id, title FROM course ORDER BY title");
+                    $stmt = $database->prepare("
+                        SELECT c.course_id, c.title
+                        FROM course c
+                        JOIN enrollment e ON c.course_id = e.course_id
+                        WHERE e.student_id = :student_id
+                        ORDER BY c.title
+                    ");
+                    $stmt->execute(['student_id' => $_SESSION['user_id']]);
                     while ($course = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
                         <a href="/student/course?id=<?php echo $course['course_id']; ?>" 
                            class="list-group-item list-group-item-action">
