@@ -21,6 +21,8 @@ $routes = [
     'student/dashboard' => ['file' => 'student/dashboard.php', 'role' => 'student'],
     'instructor/courses' => ['file' => 'instructor/courses.php', 'role' => 'instructor'],
     'instructor/dashboard' => ['file' => 'instructor/dashboard.php', 'role' => 'instructor'],
+    'instructor/create_course' => ['file' => 'instructor/create_course.php', 'role' => 'instructor'],
+    'instructor/course' => ['file' => 'instructor/course.php', 'role' => 'instructor'],
     // ... add more routes as needed
 ];
 

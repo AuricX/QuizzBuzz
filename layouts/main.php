@@ -80,7 +80,12 @@ document.getElementById('saveProfileBtn').addEventListener('click', function() {
         email: form.email.value,
         password: form.password.value
     };
-    fetch('/student/profile_update.php', {
+    // Determine endpoint based on role
+    let endpoint = '/student/profile_update.php';
+    <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'instructor'): ?>
+        endpoint = '/instructor/profile_update.php';
+    <?php endif; ?>
+    fetch(endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)
