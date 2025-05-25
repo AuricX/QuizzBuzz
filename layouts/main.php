@@ -39,5 +39,66 @@
     <!-- Custom JS -->
     <!-- <script src="/assets/js/main.js"></script> -->
     <?php echo $additionalScripts ?? ''; ?>
+
+<!-- Profile Modal -->
+<div class="modal fade" id="profileModal" tabindex="-1" aria-labelledby="profileModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="profileModalLabel">Edit Profile</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="profileForm">
+          <div class="mb-3">
+            <label for="profileUsername" class="form-label">Username</label>
+            <input type="text" class="form-control" id="profileUsername" name="username" value="<?php echo htmlspecialchars($_SESSION['name'] ?? ''); ?>" required>
+          </div>
+          <div class="mb-3">
+            <label for="profileEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" id="profileEmail" name="email" value="<?php echo htmlspecialchars($_SESSION['email'] ?? ''); ?>" required>
+          </div>
+          <div class="mb-3">
+            <label for="profilePassword" class="form-label">New Password</label>
+            <input type="password" class="form-control" id="profilePassword" name="password" placeholder="Leave blank to keep current password">
+          </div>
+        </form>
+        <div id="profileUpdateMsg" class="mt-2"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="saveProfileBtn">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+document.getElementById('saveProfileBtn').addEventListener('click', function() {
+    const form = document.getElementById('profileForm');
+    const formData = {
+        username: form.username.value,
+        email: form.email.value,
+        password: form.password.value
+    };
+    fetch('/student/profile_update.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+    })
+    .then(res => res.json())
+    .then(data => {
+        const msg = document.getElementById('profileUpdateMsg');
+        if (data.success) {
+            msg.innerHTML = '<div class="alert alert-success">Profile updated successfully.</div>';
+            setTimeout(() => window.location.reload(), 1200);
+        } else {
+            msg.innerHTML = '<div class="alert alert-danger">' + (data.message || 'Update failed.') + '</div>';
+        }
+    })
+    .catch(() => {
+        document.getElementById('profileUpdateMsg').innerHTML = '<div class="alert alert-danger">An error occurred.</div>';
+    });
+});
+</script>
 </body>
 </html> 

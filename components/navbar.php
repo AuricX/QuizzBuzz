@@ -19,7 +19,7 @@
             </ul>
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link <?php echo $currentPage === 'profile' ? 'active' : ''; ?>" href="/profile">
+                    <a class="nav-link <?php echo $currentPage === 'profile' ? 'active' : ''; ?>" href="#" data-bs-toggle="modal" data-bs-target="#profileModal">
                         <i class="bi bi-person-circle"></i> Profile
                     </a>
                 </li>

@@ -47,6 +47,7 @@ CREATE TABLE IF NOT EXISTS `course` (
                      'Hard',
                      'Very Hard'
                    ) NOT NULL DEFAULT 'Normal',
+  `price`         DECIMAL(10,2)       NOT NULL DEFAULT 49.99,
   `teacher_id`    INT                 NOT NULL,
   `category_id`   INT                 NOT NULL,
   FOREIGN KEY (`teacher_id`)  REFERENCES `teacher`(`teacher_id`),
@@ -98,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `payment` (
   FOREIGN KEY (`course_id`)  REFERENCES `course`(`course_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- 10. Quiz Attempts (student’s score on a quiz)
+-- 10. Quiz Attempts (student's score on a quiz)
 CREATE TABLE IF NOT EXISTS `quiz_attempt` (
   `attempt_id`    INT AUTO_INCREMENT PRIMARY KEY,
   `student_id`    INT                 NOT NULL,
