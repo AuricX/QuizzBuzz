@@ -24,7 +24,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/logout">
+                    <a class="nav-link" href="/logout.php">
                         <i class="bi bi-box-arrow-right"></i> Logout
                     </a>
                 </li>
