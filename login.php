@@ -1,5 +1,5 @@
 <?php
-// session_start(); // Removed because router.php already starts the session
+session_start();
 require_once __DIR__ . '/db/conx.php';
 
 $error = '';
@@ -54,7 +54,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html>
 <head>
     <title>Login - QuizzBuzz</title>
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 <body>
     <div class="container mt-5">

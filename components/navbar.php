@@ -12,7 +12,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?php echo $currentPage === 'courses' ? 'active' : ''; ?>" href="/courses.php">
+                    <a class="nav-link <?php echo $currentPage === 'courses' ? 'active' : ''; ?>" href="/<?php echo $_SESSION['role']; ?>/courses">
                         <i class="bi bi-book"></i> Courses
                     </a>
                 </li>
