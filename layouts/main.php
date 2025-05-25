@@ -17,15 +17,15 @@
 <body class="vh-100">
     <div class="d-flex vh-100">
         <!-- Sidebar -->
-        <?php include_once(__DIR__ . '/../components/sidebar.php'); ?>
+        <?php include_once __DIR__ . '/../components/sidebar.php'; ?>
         
         <!-- Main Content -->
-        <div class="flex-grow-1 d-flex flex-column overflow-hidden">
+        <div class="flex-grow-1 d-flex flex-column overflow-hidden" style="background-color:rgb(13, 14, 30);">
             <!-- Navbar -->
-            <?php include_once(__DIR__ . '/../components/navbar.php'); ?>
+            <?php include_once __DIR__ . '/../components/navbar.php'; ?>
             
             <!-- Page Content -->
-            <div class="container-fluid px-4 py-3 overflow-auto" style="background-color:rgb(13, 14, 30);">
+            <div class="container-fluid px-4 py-3 overflow-auto">
                 <?php echo $content ?? ''; ?>
             </div>
         </div>

@@ -2,7 +2,7 @@
 $pageTitle = 'Course Details - QuizzBuzz';
 $currentPage = 'courses';
 
-require_once __DIR__ . '/conx.php';
+require_once __DIR__ . '/../db/conx.php';
 
 // Get course ID from URL
 $courseId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
@@ -17,7 +17,11 @@ ob_start();
 
 try {
     // Fetch course details
-    $stmt = $database->prepare("SELECT * FROM courses WHERE id = ?");
+    $stmt = $database->prepare("SELECT c.*, t.name as teacher_name, cat.name as category_name 
+                               FROM course c 
+                               JOIN teacher t ON c.teacher_id = t.teacher_id 
+                               JOIN category cat ON c.category_id = cat.category_id 
+                               WHERE c.course_id = ?");
     $stmt->execute([$courseId]);
     $course = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -36,7 +40,9 @@ try {
                 <h2 class="card-title"><?php echo htmlspecialchars($course['title']); ?></h2>
                 <p class="card-text"><?php echo nl2br(htmlspecialchars($course['description'])); ?></p>
                 <div class="text-muted mb-4">
-                    <i class="bi bi-person"></i> Instructor: <?php echo htmlspecialchars($course['instructor_name']); ?>
+                    <i class="bi bi-person"></i> Instructor: <?php echo htmlspecialchars($course['teacher_name']); ?><br>
+                    <i class="bi bi-tag"></i> Category: <?php echo htmlspecialchars($course['category_name']); ?><br>
+                    <i class="bi bi-bar-chart"></i> Level: <?php echo htmlspecialchars($course['level']); ?>
                 </div>
             </div>
         </div>
@@ -45,7 +51,11 @@ try {
         <div class="row">
             <?php
             // Fetch quizzes for this course
-            $stmt = $database->prepare("SELECT * FROM quizzes WHERE course_id = ? ORDER BY created_at DESC");
+            $stmt = $database->prepare("SELECT q.*, 
+                                      (SELECT COUNT(*) FROM question WHERE quiz_id = q.quiz_id) as question_count 
+                                      FROM quiz q 
+                                      WHERE q.course_id = ? 
+                                      ORDER BY q.quiz_id DESC");
             $stmt->execute([$courseId]);
             
             while ($quiz = $stmt->fetch(PDO::FETCH_ASSOC)) {

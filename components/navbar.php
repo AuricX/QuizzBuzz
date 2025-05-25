@@ -12,13 +12,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?php echo $currentPage === 'courses' ? 'active' : ''; ?>" href="/courses">
+                    <a class="nav-link <?php echo $currentPage === 'courses' ? 'active' : ''; ?>" href="/courses.php">
                         <i class="bi bi-book"></i> Courses
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link <?php echo $currentPage === 'quizzes' ? 'active' : ''; ?>" href="/quizzes">
-                        <i class="bi bi-question-circle"></i> Quizzes
                     </a>
                 </li>
             </ul>

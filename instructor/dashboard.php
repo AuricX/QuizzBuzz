@@ -1,4 +1,9 @@
 <?php
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'instructor') {
+    header('Location: /login.php');
+    exit;
+}
+
 $pageTitle = 'Student Dashboard - QuizzBuzz';
 $currentPage = 'home';
 

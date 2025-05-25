@@ -3,12 +3,10 @@
         <div class="mb-4">
             <h5 class="text-light">Quick Actions</h5>
             <div class="list-group">
-                <a href="/new-quiz" class="list-group-item list-group-item-action">
-                    <i class="bi bi-plus-circle"></i> Create New Quiz
+                <a href="enroll.php" class="list-group-item list-group-item-action">
+                    <i class="bi bi-plus-circle"></i> Enroll in Course
                 </a>
-                <a href="/my-quizzes" class="list-group-item list-group-item-action">
-                    <i class="bi bi-collection"></i> My Quizzes
-                </a>
+
             </div>
         </div>
         
@@ -17,9 +15,9 @@
             <div class="list-group">
                 <?php
                 try {
-                    $stmt = $database->query("SELECT id, title FROM courses ORDER BY title");
+                    $stmt = $database->query("SELECT course_id, title FROM course ORDER BY title");
                     while ($course = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
-                        <a href="/course/<?php echo $course['id']; ?>" 
+                        <a href="course.php?id=<?php echo $course['course_id']; ?>" 
                            class="list-group-item list-group-item-action">
                             <?php echo htmlspecialchars($course['title']); ?>
                         </a>
