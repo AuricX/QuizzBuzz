@@ -23,11 +23,9 @@ $routes = [
     'instructor/dashboard' => ['file' => 'instructor/dashboard.php', 'role' => 'instructor'],
     'instructor/create_course' => ['file' => 'instructor/create_course.php', 'role' => 'instructor'],
     'instructor/course' => ['file' => 'instructor/course.php', 'role' => 'instructor'],
-    // ... add more routes as needed
 ];
 
 if (!isset($_SESSION['user_id'])) {
-    // Allow access to login.php without being logged in
     if ($uri === 'login.php' || $uri === 'login') {
         require 'login.php';
         exit;
